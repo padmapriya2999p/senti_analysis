@@ -65,11 +65,11 @@ with PdfPages('graph.pdf') as pdfFile:
     plt.close()
     
     fig, ax3 = plt.subplots(figsize=(11,6))
-    x_bar=[1,0]
+    x_bar=[0,1]
     y_bar=list(count1)
     color=['purple','pink']
-    ax3.bar(x_bar,y_bar,color=color,width=0.5)
-    ax1.set_title("Showing count of positive and negative reviews from input")
+    ax3.bar(x_bar,y_bar,color=color,width=0.2)
+    ax3.set_title("Showing count of positive and negative reviews from input")
     ax3.set_xlabel("Ratio of positive and negative feedback of input review")
     ax3.set_ylabel("Count")
     plt.show()
