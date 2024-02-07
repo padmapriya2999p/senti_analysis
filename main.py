@@ -7,12 +7,13 @@ from textblob import TextBlob
 import pandas as pd 
 #import matplotlib.pyplot as plt  
 import time
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
 import os 
 from wordcloud import WordCloud
 import zipfile
+import emoji 
 
-start_time = time.time()
+#start_time = time.time()
 
 def openFile():
     #to get the input file
@@ -87,35 +88,39 @@ def create_window(first_run):
     label.config(highlightbackground="cadetblue4", highlightthickness=4)
     label.pack()
 
-    img = ImageTk.PhotoImage(Image.open("img.png"))
-    image_label = Label(window, image=img)
-    image_label.pack()
+    labl = Label(window, text=f'{emoji.emojize(":grinning_face:")} {emoji.emojize(":expressionless_face:")} {emoji.emojize(":disappointed_face:")}', font=("Helvetica", 50), bg='yellow')
+    labl.config(highlightbackground="antiquewhite4", highlightthickness=4)
+    labl.place(relx=0.5, rely=0.3, anchor=CENTER)
+
+    #img = ImageTk.PhotoImage(Image.open("img.png"))
+    #image_label = Label(window, image=img)
+    #image_label.pack()
 
     if first_run:
         # Button to open file
         open_button = Button(window, text="Choose File", font=("Helvetica", 10), background='antiquewhite4', command=openFile)
-        open_button.place(relx=0.5, rely=0.6, anchor=CENTER)
+        open_button.place(relx=0.5, rely=0.5, anchor=CENTER)
 
         global txt_input
         txt_input=Entry(window,width=30)
         txt_input.config(highlightbackground="antiquewhite4", highlightthickness=2)
-        txt_input.place(relx=0.5, rely=0.7, anchor=CENTER)
+        txt_input.place(relx=0.5, rely=0.6, anchor=CENTER)
 
         label3 = Label(window, text='Please enter your review column name', font=("Times", 8,"bold"))
-        label3.place(relx=0.5, rely=0.77, anchor=CENTER)
+        label3.place(relx=0.5, rely=0.67, anchor=CENTER)
 
         open_button = Button(window, text="Submit", font=("Helvetica", 10), background='antiquewhite4', command=submit_fn)
-        open_button.place(relx=0.5, rely=0.85, anchor=CENTER) 
+        open_button.place(relx=0.5, rely=0.75, anchor=CENTER) 
 
     else:
         # Button to trigger file download (Note: 'pdfpath' needs to be defined before calling this function)
         download_button = Button(window, text="Download File", font=("Helvetica", 16), background='antiquewhite4',
                                  command=download_file)
-        download_button.place(relx=0.5, rely=0.6, anchor=CENTER)
+        download_button.place(relx=0.5, rely=0.5, anchor=CENTER)
 
         label2 = Label(window, text='Please download your file. Thankyou :)', font=("Georgia", 8), background='cornflowerblue')
         label2.config(highlightbackground="cadetblue4", highlightthickness=2)
-        label2.place(relx=0.5, rely=0.7, anchor=CENTER)
+        label2.place(relx=0.5, rely=0.6, anchor=CENTER)
 
         positive_count = "The total positive feedback : "+str(len(df2.axes[0]))
         #print("The sum of positive feedback in input:",positive_count)
@@ -125,11 +130,11 @@ def create_window(first_run):
 
         label2 = Label(window, text=positive_count,font=("Helvetica", 10,"bold"), width=30)
         #label2.config(highlightbackground="cadetblue4", highlightthickness=2)
-        label2.place(relx=0.5, rely=0.8, anchor=CENTER)
+        label2.place(relx=0.5, rely=0.7, anchor=CENTER)
 
         label2 = Label(window, text=neg_count, font=("Helvetica", 10,"bold"), width=30)
         #label2.config(highlightbackground="cadetblue4", highlightthickness=2)
-        label2.place(relx=0.5, rely=0.9, anchor=CENTER)
+        label2.place(relx=0.5, rely=0.8, anchor=CENTER)
 
     window.mainloop()
 
@@ -194,9 +199,13 @@ def analyze_fn():
     
     #aspect based analysis
     #need to proceed
-           
+
+print("Welcome to KG Coders")
+print("Please Wait")
 create_window(True)
+print("Thank You for your patience")
 create_window(False)
 
-end_time=time.time()
-print('Query complete. Execution time is %s sec/s.'%(round(end_time-start_time)))
+#end_time=time.time()
+#print('Query complete. Execution time is %s sec/s.'%(round(end_time-start_time)))
+print("Thank You for your time and support")
